@@ -14,6 +14,7 @@ namespace LuckyTickets
             TicketController controller = new TicketController();
 
             controller.Run();
+
             Console.ReadKey();
         }
     }
