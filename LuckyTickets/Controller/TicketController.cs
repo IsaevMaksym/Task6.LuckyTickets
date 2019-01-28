@@ -20,8 +20,6 @@ namespace LuckyTickets.Controller
         #region Private variables
 
         private Iviewer _viewer;
-        private PathValidator _pathValidator;
-        private AlgorythmTypeValidator _typeValidator;
 
         List<TicketCounter> _counters = new List<TicketCounter>();
 
@@ -44,12 +42,12 @@ namespace LuckyTickets.Controller
 
             ILuckyTicketCounterAlgorithm[] _algorithmsArr = GetAlgorithmsArrFromFile();
 
-            AddAlgorithmCountersToList( _algorithmsArr);
+            AddAlgorithmCountersToList(_algorithmsArr);
 
             foreach (TicketCounter counter in _counters)
-            {                
+            {
                 _viewer.ShowMessage(counter.AlgorithmName);
-                _viewer.ShowMessage(counter.LuckyTiketsCount.ToString()+ TICKETS);
+                _viewer.ShowMessage(counter.LuckyTiketsCount.ToString() + TICKETS);
             }
 
             _viewer.MakePause();
@@ -95,9 +93,8 @@ namespace LuckyTickets.Controller
         private ILuckyTicketCounterAlgorithm[] GetAlgorithmsFromFile()
         {
             string path;
-
-            _pathValidator = new PathValidator();
-            _typeValidator = new AlgorythmTypeValidator();
+            PathValidator _pathValidator = new PathValidator();
+            AlgorythmTypeValidator _typeValidator = new AlgorythmTypeValidator();
 
             do
             {
