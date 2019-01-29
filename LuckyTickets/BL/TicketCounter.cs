@@ -34,11 +34,7 @@ namespace LuckyTickets.BL
                 if (_algorithm.IsTicketLucky(ticket))
                 {
                     _tickets.Enqueue(ticket);
-                }
-                else
-                {
-                    ticket.Dispose();
-                }
+                }                
             }
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LuckyTickets.BL
 {
-    class PiterAlgorithm : ILuckyTicketCounterAlgorithm
+    public class PiterAlgorithm : ILuckyTicketCounterAlgorithm
     {
         private const string AlgorithmName = "Piter algorithm"; 
 

@@ -10,18 +10,19 @@ namespace LuckyTickets.BL.Utilities
     class PathValidator
     {
         private const string EXTENSION = ".txt";
-        private const string INVALID_PATH = "Invalid path {0}";
+        private const string INVALID_PATH = "Path not found {0}";
 
         private bool _isPathOk;
-        
+
         public bool IsFilePathValid(string userPath)
         {
             _isPathOk = false;
 
-            if ((File.Exists(userPath)) || (Path.GetExtension(userPath) == EXTENSION))
+            if ((File.Exists(userPath)) && (Path.GetExtension(userPath) == EXTENSION))
             {
                 _isPathOk = true;
             }
+
 
             return _isPathOk;
         }

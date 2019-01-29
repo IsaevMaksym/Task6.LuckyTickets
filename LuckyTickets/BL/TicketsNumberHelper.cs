@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LuckyTickets.BL
 {
-    class TicketsNumberHelper
+    public class TicketsNumberHelper
     {
         public byte[] getDigits(uint number)
         {
@@ -27,7 +27,8 @@ namespace LuckyTickets.BL
             {
                 digitsArr.Add(0);
             }
-                
+
+            digitsArr.Reverse();
             return digitsArr.ToArray();
         }
 

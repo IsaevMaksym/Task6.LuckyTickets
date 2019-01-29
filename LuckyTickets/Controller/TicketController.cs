@@ -40,7 +40,7 @@ namespace LuckyTickets.Controller
             _viewer.ShowMessage(RULES);
             _viewer.MakePause();
 
-            ILuckyTicketCounterAlgorithm[] _algorithmsArr = GetAlgorithmsArrFromFile();
+            ILuckyTicketCounterAlgorithm[] _algorithmsArr = GetAlgorithmsArr();
 
             AddAlgorithmCountersToList(_algorithmsArr);
 
@@ -77,7 +77,7 @@ namespace LuckyTickets.Controller
             }
         }
 
-        private ILuckyTicketCounterAlgorithm[] GetAlgorithmsArrFromFile()
+        private ILuckyTicketCounterAlgorithm[] GetAlgorithmsArr()
         {
             ILuckyTicketCounterAlgorithm[] algorythmsArr = null;
 
@@ -95,15 +95,14 @@ namespace LuckyTickets.Controller
             string path;
             PathValidator _pathValidator = new PathValidator();
             AlgorythmTypeValidator _typeValidator = new AlgorythmTypeValidator();
-
+            
             do
             {
                 path = _viewer.GetUserAnswerOnQuestion(GET_FILE_PATH);
 
-            } while (!_pathValidator.IsFilePathValid(path));
+            } while (!_pathValidator.IsFilePathValid(path));                       
 
             return _typeValidator.GetAlgorythmType(_pathValidator.GetFileString(path));
-
         }
 
         private uint GetAlgorithmTicketMaxLimit(string algorithmName)

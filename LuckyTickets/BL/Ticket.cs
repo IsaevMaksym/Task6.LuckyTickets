@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace LuckyTickets.BL
 {
-    class Ticket : IDisposable
+    public class Ticket 
     {
         private const string TICKET = "Ticket #{0};";
         private byte[] _digits;
         private uint _number;
-
 
         public Ticket(uint number, byte[] digits)
         {
@@ -48,10 +47,6 @@ namespace LuckyTickets.BL
         {
             return String.Format(TICKET, _number);
         }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
+               
     }
 }

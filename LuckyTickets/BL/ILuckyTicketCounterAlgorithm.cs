@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LuckyTickets.BL
 {
-    interface ILuckyTicketCounterAlgorithm
+    public interface ILuckyTicketCounterAlgorithm
     {
         bool IsTicketLucky(Ticket t);
-               
+
     }
 }
