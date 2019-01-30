@@ -29,7 +29,7 @@ namespace LuckyTickets.BL.Utilities
                 string pattern = AlgorythmName.algorythmSearchPattern[i];
                 regex = new Regex(pattern);
 
-                match = regex.Matches(currentLine);
+                match = regex.Matches(currentLine.ToLower());
 
                 if (match.Count != 0)
                 {

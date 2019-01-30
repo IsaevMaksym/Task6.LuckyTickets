@@ -50,16 +50,13 @@ namespace LuckyTickets.Controller
             catch (ArgumentNullException a)
             {
                 _viewer.ShowMessage(a.Message);
+                _viewer.ShowClosingMessage();
                 return;
             }
             catch (Exception)
             {
                 return;
-            }
-            finally
-            {
-                _viewer.ShowClosingMessage();
-            }
+            }            
 
             AddAlgorithmCountersToList(_algorithmsArr);
 
@@ -67,8 +64,10 @@ namespace LuckyTickets.Controller
             {
                 _viewer.ShowMessage(counter.AlgorithmName);
                 _viewer.ShowMessage(counter.LuckyTiketsCount.ToString() + TICKETS);
+                
             }
 
+            _viewer.MakePause();
             _viewer.ShowClosingMessage();
         }
 
