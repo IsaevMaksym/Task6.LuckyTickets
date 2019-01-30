@@ -12,7 +12,8 @@ namespace LuckyTickets.Controller
     class TicketController
     {
         private const string RULES = "Enter file path, witch should contain lucky tickets search algorithm name (Moskow or Piter)";
-        private const string GET_FILE_PATH = @"Enter file path(e.g. <disk_name>:\<folder_name>)\<file_name>.txt";
+        private const string GET_FILE_PATH = @"Enter file path(e.g. <disk_name>:\<folder_name>\<file_name>.txt).";
+        private const string GET_FILE_PATH_PART_TWO = "\nOtherwise click 'Enter' to close the program ";
         private const string TICKETS_MAX_LIMIT = " max limit of tikets, or enter 0, if you want to use defaul limit(999999).";
         private const string TICKETS = " lucky tikets";
         private const uint DEFAULT_LIMIT = 999999;
@@ -40,7 +41,25 @@ namespace LuckyTickets.Controller
             _viewer.ShowMessage(RULES);
             _viewer.MakePause();
 
-            ILuckyTicketCounterAlgorithm[] _algorithmsArr = GetAlgorithmsArr();
+            ILuckyTicketCounterAlgorithm[] _algorithmsArr;
+
+            try
+            {
+                _algorithmsArr = GetAlgorithmsArr();
+            }
+            catch (ArgumentNullException a)
+            {
+                _viewer.ShowMessage(a.Message);
+                return;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                _viewer.ShowClosingMessage();
+            }
 
             AddAlgorithmCountersToList(_algorithmsArr);
 
@@ -50,7 +69,7 @@ namespace LuckyTickets.Controller
                 _viewer.ShowMessage(counter.LuckyTiketsCount.ToString() + TICKETS);
             }
 
-            _viewer.MakePause();
+            _viewer.ShowClosingMessage();
         }
 
         private void AddAlgorithmCountersToList(ILuckyTicketCounterAlgorithm[] _algorithmsArr)
@@ -63,6 +82,7 @@ namespace LuckyTickets.Controller
                 _viewer.ShowMessage(algorithm.ToString());
 
                 _ticketCounter = new TicketCounter(algorithm);
+
                 limit = GetAlgorithmTicketMaxLimit(algorithm.ToString());
 
                 if (limit == 0)
@@ -95,12 +115,17 @@ namespace LuckyTickets.Controller
             string path;
             PathValidator _pathValidator = new PathValidator();
             AlgorythmTypeValidator _typeValidator = new AlgorythmTypeValidator();
-            
+
             do
             {
-                path = _viewer.GetUserAnswerOnQuestion(GET_FILE_PATH);
+                path = _viewer.GetUserAnswerOnQuestion(GET_FILE_PATH+ GET_FILE_PATH_PART_TWO);
 
-            } while (!_pathValidator.IsFilePathValid(path));                       
+                if (string.IsNullOrWhiteSpace(path))
+                {
+                    throw new ArgumentNullException();
+                }
+
+            } while (!_pathValidator.IsFilePathValid(path));
 
             return _typeValidator.GetAlgorythmType(_pathValidator.GetFileString(path));
         }

@@ -8,7 +8,7 @@ namespace LuckyTickets.BL
 {
     public interface ILuckyTicketCounterAlgorithm
     {
-        bool IsTicketLucky(Ticket t);
 
+        bool IsTicketLucky(Ticket t);
     }
 }

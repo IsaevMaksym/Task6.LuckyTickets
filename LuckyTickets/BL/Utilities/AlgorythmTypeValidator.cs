@@ -8,10 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace LuckyTickets.BL.Utilities
 {
-    class AlgorythmTypeValidator
+    public class AlgorythmTypeValidator
     {
         private Regex regex;
         private MatchCollection match;
+        private const string PITER_ALGORITHM = "piter";
+        private const string MOSKOW_ALGORITHM = "moskow";
 
         public ILuckyTicketCounterAlgorithm[] GetAlgorythmType(string FileLine)
         {
@@ -31,7 +33,7 @@ namespace LuckyTickets.BL.Utilities
 
                 if (match.Count != 0)
                 {
-                    arr.Enqueue(match[0].Value);
+                    arr.Enqueue(match[0].Value.Trim());
                 }
             }
 
@@ -45,15 +47,28 @@ namespace LuckyTickets.BL.Utilities
                 return null;
             }
 
-            Queue<ILuckyTicketCounterAlgorithm> counters = new Queue<ILuckyTicketCounterAlgorithm>();
-            
-            foreach (string s in args)
-            {
-                counters.Enqueue(AlgorythmName.algorythmRef[s.Trim()]);
-            }
+            Queue<ILuckyTicketCounterAlgorithm> counters = new Queue<ILuckyTicketCounterAlgorithm>();            
 
+            for (int i = 0; i < args.Length; i++)
+            {
+                ILuckyTicketCounterAlgorithm algorithm = null;
+                if (args[i]== PITER_ALGORITHM)
+                {
+                    algorithm = new PiterAlgorithm();
+                }
+                if (args[i] == MOSKOW_ALGORITHM)
+                {
+                    algorithm = new MoskowAlgorithm();
+                }
+                if (algorithm != null)
+                {
+                    counters.Enqueue(algorithm);
+                }
+                
+            }
+           
             return counters.ToArray<ILuckyTicketCounterAlgorithm>();
         }
-
+                
     }
 }

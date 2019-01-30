@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LuckyTickets.BL
 {
-    class MoskowAlgorithm : ILuckyTicketCounterAlgorithm
+   public class MoskowAlgorithm : ILuckyTicketCounterAlgorithm
     {
         private const string AlgorithmName = "Moskow algorithm";
 

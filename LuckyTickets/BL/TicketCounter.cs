@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace LuckyTickets.BL
 {
-    class TicketCounter
-    {
-       
-        private Queue<Ticket> _tickets = new Queue<Ticket>();
-        private TicketsNumberHelper _helper = new TicketsNumberHelper();
+    public class TicketCounter
+    {       
+        private Queue<Ticket> _tickets = new Queue<Ticket>();        
         private ILuckyTicketCounterAlgorithm _algorithm;
 
         public TicketCounter()
@@ -23,19 +21,19 @@ namespace LuckyTickets.BL
             _algorithm = algorithm;
         }
 
-        public void CountTickets(uint ticketsMaxNumber)
-        {
-            Ticket ticket;
-
+        public int CountTickets(uint ticketsMaxNumber)
+        {            
             for (uint i = 0; i <= ticketsMaxNumber; i++)
             {
-                ticket = new Ticket(i, _helper.getDigits(i));
+                Ticket ticket = new Ticket(i);
 
                 if (_algorithm.IsTicketLucky(ticket))
                 {
                     _tickets.Enqueue(ticket);
                 }                
             }
+
+            return LuckyTiketsCount;
         }
 
         public virtual IEnumerable<string> GetLuckyTicketsList()

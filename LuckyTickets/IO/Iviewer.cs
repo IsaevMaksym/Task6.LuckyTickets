@@ -17,5 +17,7 @@ namespace LuckyTickets.IO
         string GetUserAnswerOnQuestion(string question);
 
         uint GetUserNum(string question);
+
+        void ShowClosingMessage();
     }
 }

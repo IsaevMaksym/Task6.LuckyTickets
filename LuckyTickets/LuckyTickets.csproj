@@ -60,7 +60,7 @@
     <Compile Include="BL\MoskowAlgorithm.cs" />
     <Compile Include="BL\PiterAlgorithm.cs" />
     <Compile Include="BL\Ticket.cs" />
-    <Compile Include="BL\TicketsNumberHelper.cs" />
+    <Compile Include="BL\Utilities\TicketsNumberHelper.cs" />
     <Compile Include="BL\Utilities\AlgorythmTypeValidator.cs" />
     <Compile Include="BL\Utilities\PathValidator.cs" />
     <Compile Include="Controller\TicketController.cs" />

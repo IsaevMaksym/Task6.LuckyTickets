@@ -7,7 +7,7 @@ using System.IO;
 
 namespace LuckyTickets.BL.Utilities
 {
-    class PathValidator
+    public class PathValidator
     {
         private const string EXTENSION = ".txt";
         private const string INVALID_PATH = "Path not found {0}";
@@ -23,13 +23,12 @@ namespace LuckyTickets.BL.Utilities
                 _isPathOk = true;
             }
 
-
             return _isPathOk;
         }
 
         public string GetFileString(string userPath)
         {
-            if (!_isPathOk)
+            if (!IsFilePathValid(userPath))
             {
                 throw new FileNotFoundException(INVALID_PATH, userPath);
             }

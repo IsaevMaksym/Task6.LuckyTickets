@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LuckyTickets.BL;
+using LuckyTickets.BL.Utilities;
 
-namespace LuckyTickets.Test.BL.Tests
+namespace LuckyTickets.Test.BL.Tests.Utilities.Tests
 {
     [TestClass]
     public class TicketsNumberHelperTests
@@ -12,14 +12,14 @@ namespace LuckyTickets.Test.BL.Tests
         [DataRow(56, new byte[] { 0, 0, 0, 0, 5, 6 })]
         [DataRow( 0, new byte[] { 0, 0, 0, 0, 0, 0 })]
 
-        public void GetDigits(int number, byte[] expected)
+        public void GetDigitsOfNumTest(int number, byte[] expected)
         {
             //Arrange
             TicketsNumberHelper helper = new TicketsNumberHelper();
             byte[] actual;
 
             //Act
-            actual = helper.getDigits((uint)number);
+            actual = helper.getDigitsOfNum((uint)number);
 
             //Assert
             CollectionAssert.AreEqual(expected, actual);

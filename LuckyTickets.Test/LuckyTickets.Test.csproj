@@ -62,16 +62,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL.Tests\MoskowAlgorithmTests.cs" />
     <Compile Include="BL.Tests\PiterAlgorithmTests.cs" />
-    <Compile Include="BL.Tests\TicketsNumberHelperTests.cs" />
+    <Compile Include="BL.Tests\TicketCounterTests.cs" />
+    <Compile Include="BL.Tests\Utilities.Tests\TicketsNumberHelperTests.cs" />
+    <Compile Include="BL.Tests\Utilities.Tests\AlgorythmTypeValidatorTests.cs" />
+    <Compile Include="LuckyTIcketAlgorithmsArrComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BL.Tests\Utilities.Tests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\LuckyTickets\LuckyTickets.csproj">
       <Project>{b541fffd-3504-4021-ba6b-fc252526de91}</Project>
